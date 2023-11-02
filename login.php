@@ -1,3 +1,27 @@
+<?php
+    if (isset($_GET['error'])) {
+        switch ($_GET['error']) {
+            case 'password-not-the-same': {
+                echo "<script type='text/javascript'>alert('Password are not the same.');</script>";
+                break;
+            }
+            case 'not-find-account': {
+                echo "<script type='text/javascript'>alert('Email or password is incorrect.');</script>";
+                break;
+            }
+            case 'email-is-existed': {
+                echo "<script type='text/javascript'>alert('This email address has been used.');</script>";
+                break;
+            }
+
+            default: {
+                break;
+            }
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +38,14 @@
     <div class="sign-in-form">
         <h2>Already have an account?</h2>
         <span>Sign in with your email and password</span>
-        <form method="post" action="sign_in_process.php">
+        <form method="post" action="./processes/login_process.php">
             <div class="group">
                 <input
                     type="email"
                     id="sign_in_email"
                     class="form-input"
                     name="email"
+                    required
                 >
                 <label for="sign_in_email" class="form-input-label">Email</label>
             </div>
@@ -31,6 +56,7 @@
                     id="sign_in_password"
                     class="form-input"
                     name="password"
+                    required
                 >
                 <label for="sign_in_password" class="form-input-label">Password</label>
             </div>
@@ -45,15 +71,26 @@
     <div class="sign-up-form">
         <h2>Don't have an account?</h2>
         <span>Sign up with your email and password</span>
-        <form method="post" action="sign_up_process.php">
+        <form method="post" action="./processes/register_process.php">
             <div class="group">
                 <input
                     type="text"
-                    id="display_name"
+                    id="first_name"
                     class="form-input"
-                    name="display_name"
+                    name="first_name"
+                    required
                 >
-                <label for="display_name" class="form-input-label">Display Name</label>
+                <label for="first_name" class="form-input-label">First Name</label>
+            </div>
+            <div class="group">
+                <input
+                    type="text"
+                    id="last_name"
+                    class="form-input"
+                    name="last_name"
+                    required
+                >
+                <label for="last_name" class="form-input-label">Last Name</label>
             </div>
 
             <div class="group">
@@ -62,6 +99,7 @@
                     id="sign_up_email"
                     class="form-input"
                     name="email"
+                    required
                 >
                 <label for="sign_up_email" class="form-input-label">Email</label>
             </div>
@@ -72,6 +110,7 @@
                     id="sign_up_password"
                     class="form-input"
                     name="password"
+                    required
                 >
                 <label for="sign_up_password" class="form-input-label">Password</label>
             </div>
@@ -82,13 +121,39 @@
                     id="confirm_password"
                     class="form-input"
                     name="confirm_password"
+                    required
                 >
                 <label for="confirm_password" class="form-input-label">Confirm Password</label>
+            </div>
+
+            <div class="group">
+                <input
+                    type="text"
+                    id="phone"
+                    class="form-input"
+                    name="phone"
+                    required
+                >
+                <label for="phone" class="form-input-label">Phone</label>
+            </div>
+
+            <div class="group">
+                <input
+                    type="text"
+                    id="address"
+                    class="form-input"
+                    name="address"
+                    required
+                >
+                <label for="address" class="form-input-label">Address</label>
             </div>
 
             <button type="submit" class="button">SIGN UP</button>
         </form>
     </div>
 </div>
+<script>
+
+</script>
 </body>
 </html>

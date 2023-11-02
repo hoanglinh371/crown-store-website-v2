@@ -13,6 +13,9 @@
         INNER JOIN products AS p ON p_i.product_id = p.id
         WHERE ci.cart_id = 1";
     $cart_items = mysqli_query($connect, $sql);
+    $sql = "SELECT SUM(qty) AS total FROM cart_items WHERE cart_id = 1";
+    $result = mysqli_query($connect, $sql);
+    $total_items = mysqli_fetch_array($result)['total'];
 ?>
 
 <header class="header">
@@ -27,14 +30,16 @@
         <?php } ?>
         <a href="/shop" class="nav-link">SHOP</a>
         <a href="../contact.php" class="nav-link">CONTACT</a>
-        <?php if (empty($_SESSION['id'])) { ?>
+        <?php if (empty($_SESSION['user'])) { ?>
             <a href="../login.php" class="nav-link">LOGIN</a>
         <?php } else { ?>
-            <a href="../sign-out-process.php" class="nav-link">LOGOUT</a>
+            <a href="../processes/logout_process.php" class="nav-link">LOGOUT</a>
         <?php } ?>
         <div class="header__cart-icon">
             <img src="../assets/images/shopping-bag.svg" alt="shopping-icon">
-            <span>0</span>
+            <span>
+                <?php echo $total_items ?>
+            </span>
         </div>
     </nav>
     <div class="header__cart-dropdown">

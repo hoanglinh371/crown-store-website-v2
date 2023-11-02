@@ -22,6 +22,9 @@
 ?>
 
 <div class="products-container">
+
+
+    <!--  Các biến thể của sản phẩm  -->
     <?php foreach ($items as $item) { ?>
         <div class="product-card">
             <img src="<?php echo $item['product_item_image'] ?>" alt="image" class="product-card__image">
@@ -31,7 +34,10 @@
                     <?php echo '$' . $item['price'] ?>
                 </span>
             </div>
-            <a href="add_to_cart_process.php?id=<?php echo $item['id'] ?>" class="button inverted">
+            <a
+                href="/processes/add_to_cart_process.php?product_item_id=<?php echo $item['id'] ?>"
+                class="button inverted"
+            >
                 Add to Cart
             </a>
         </div>

@@ -366,8 +366,8 @@ ul li {
 .login-container {
     display: flex;
     justify-content: space-between;
-    margin: 30px auto;
-    width: 1200px;
+    margin: 32px auto;
+    width: 1356px;
 }
 
 .sign-in-form {
@@ -383,7 +383,7 @@ ul li {
 .sign-up-form {
     display: flex;
     flex-direction: column;
-    width: 520px;
+    width: 640px;
 }
 
 .sign-up-form h2 {

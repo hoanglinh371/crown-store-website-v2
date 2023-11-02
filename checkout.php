@@ -54,7 +54,7 @@
             </div>
             <span class="name"><?php echo $cart_item['product_name'] ?></span>
             <div class="quantity">
-                <a href="./update_qty_process.php?cart_item_id=<?php echo $cart_item['id'] ?>&type=dec"
+                <a href="./processes/update_qty_process.php?cart_item_id=<?php echo $cart_item['id'] ?>&type=dec"
                    class="arrow">
                     <img src="./assets/images/chevron-left-solid.svg" alt="dec-icon"/>
                 </a>
@@ -62,8 +62,9 @@
                     <?php echo $cart_item['qty'] ?>
                 </span>
                 <a
-                    href="./update_qty_process.php?cart_item_id=<?php echo $cart_item['id'] ?>&type=inc"
-                    class="arrow">
+                    href="./processes/update_qty_process.php?cart_item_id=<?php echo $cart_item['id'] ?>&type=inc"
+                    class="arrow"
+                >
                     <img src="./assets/images/chevron-right-solid.svg" alt="inc-icon"/>
                 </a>
             </div>
@@ -73,7 +74,10 @@
                     $total += $cart_item['price'] * $cart_item['qty'];
                 ?>
             </span>
-            <a class="remove-btn">
+            <a
+                href="./processes/update_qty_process.php?cart_item_id=<?php echo $cart_item['id'] ?>&type=remove"
+                class="remove-btn"
+            >
                 <img src="./assets/images/xmark-solid.svg" alt="remove-icon"/>
             </a>
         </div>
