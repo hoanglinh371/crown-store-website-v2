@@ -15,7 +15,6 @@
 <body>
 <?php
     require_once './components/header.php';
-    echo "user id" . $_SESSION['user'];
 ?>
 
 <div class="directories-container">

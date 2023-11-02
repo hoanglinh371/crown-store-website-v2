@@ -83,6 +83,7 @@
         </div>
     <?php } ?>
     <span class="total">Total: <?php echo '$' . $total ?></span>
+    <a href="./processes/order_process.php?total=<?php echo $total ?>" class="button">Order</a>
 </div>
 </body>
 </html>

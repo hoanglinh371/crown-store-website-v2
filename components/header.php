@@ -1,21 +1,40 @@
 <?php
     session_start();
     require_once './configs/database.php';
-    $sql = "SELECT
-            ci.id,
-            ci.cart_id,
-            ci.product_item_id,
-            ci.qty, p_i.price,
-            p_i.product_item_image,
-            p.product_name
-        FROM cart_items AS ci
-        INNER JOIN product_items AS p_i ON ci.product_item_id = p_i.id
-        INNER JOIN products AS p ON p_i.product_id = p.id
-        WHERE ci.cart_id = 1";
-    $cart_items = mysqli_query($connect, $sql);
-    $sql = "SELECT SUM(qty) AS total FROM cart_items WHERE cart_id = 1";
-    $result = mysqli_query($connect, $sql);
-    $total_items = mysqli_fetch_array($result)['total'];
+    $cart_items = [];
+    $total_items = 0;
+
+    if (isset($_SESSION['user'])) {
+        $userId = $_SESSION['user'];
+        $sql = "SELECT
+      ci.id,
+      ci.cart_id,
+      ci.product_item_id,
+      ci.qty, p_i.price,
+      p_i.product_item_image,
+      p.product_name
+      FROM cart_items AS ci
+      INNER JOIN product_items AS p_i ON ci.product_item_id = p_i.id
+      INNER JOIN products AS p ON p_i.product_id = p.id
+      INNER JOIN carts AS c ON ci.cart_id = c.id
+      WHERE c.user_id = $userId";
+
+        $result = mysqli_query($connect, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            // Cart has items
+            while ($row = mysqli_fetch_assoc($result)) {
+                $cart_items[] = $row;
+            }
+        }
+
+        $sql = "SELECT SUM(qty) AS total FROM cart_items WHERE cart_id = 1";
+        $result = mysqli_query($connect, $sql);
+        $total_items = mysqli_fetch_array($result)['total'];
+    } else {
+        $cart_items = [];
+        $total_items = 0;
+    }
 ?>
 
 <header class="header">
@@ -43,21 +62,21 @@
         </div>
     </nav>
     <div class="header__cart-dropdown">
-        <div class="cart-items">
-            <?php foreach ($cart_items as $cart_item) { ?>
-                <div class="cart-item">
-                    <img aria-label='image' src="<?php echo $cart_item['product_item_image'] ?>" alt=""/>
-                    <div class="item-details">
+            <div class="cart-items">
+                <?php foreach ($cart_items as $cart_item) { ?>
+                    <div class="cart-item">
+                        <img aria-label='image' src="<?php echo $cart_item['product_item_image'] ?>" alt=""/>
+                        <div class="item-details">
                         <span class="name">
                             <?php echo $cart_item['product_name'] ?>
                         </span>
-                        <span>
+                            <span>
                             <?php echo $cart_item['qty'] ?> x <?php echo $cart_item['price'] ?>
                         </span>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
-        </div>
+                <?php } ?>
+            </div>
         <a href="../checkout.php" class="button">
             CHECKOUT
         </a>

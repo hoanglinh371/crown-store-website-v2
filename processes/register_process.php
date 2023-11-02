@@ -26,4 +26,10 @@
     $sql = "INSERT INTO users (first_name, last_name, email, password, phone, address)
             VALUES ('$first_name', '$last_name', '$email', '$password', '$phone', '$address')";
     mysqli_query($connect, $sql);
+
+    $user_id = mysqli_insert_id($connect);
+
+    $sql = "INSERT INTO carts (user_id) VALUES ('$user_id')";
+    mysqli_query($connect, $sql);
+
     header("location:../login.php");
