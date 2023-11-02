@@ -477,4 +477,50 @@ ul li {
     width: 16px;
 }
 
+
 /*# sourceMappingURL=index.css.map */
+
+/* 
+
+
+
+
+ */
+.product-single__title {
+    font-size: 52px;
+}
+
+.product-single__description {
+    font-size: 32px;
+}
+.btn-check__color{
+    border-radius: 16px;
+}
+.btn-check__color___LavenderBlush{
+    background-color: #998b8c !important;
+    color: #998b8c !important;
+}
+.btn-check__color___Khaki{
+    background-color: #af907e !important;
+    color: #af907e !important;
+}
+.btn-check__color___BlueViolet{
+    background-color: #1db709 !important;
+    color: #1db709 !important;
+}
+.btn-check__color___Ivory{
+    background-color: #6a8783 !important;
+    color: #6a8783 !important;
+}
+.btn-check__color___Wheat{
+    background-color: #c56979 !important;
+    color: #c56979 !important;
+}
+.btn-check__color___Salmon{
+    background-color: #545d74 !important;
+    color: #545d74 !important;
+}
+.btn-check__color___LightGoldenRodYellow{
+    background-color: #96dfe1 !important;
+    color: #96dfe1 !important;
+}
